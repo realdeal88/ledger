@@ -1,0 +1,59 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON manifests
+        run: |
+          for f in .claude-plugin/plugin.json .claude-plugin/marketplace.json hooks/hooks.json; do
+            echo "jq → $f"
+            jq empty "$f"
+          done
+
+      - name: Plugin manifest has required fields
+        run: |
+          jq -e '.name and .version and .description' .claude-plugin/plugin.json > /dev/null
+          test "$(jq -r '.name' .claude-plugin/plugin.json)" = "ledger"
+
+      - name: hooks.json registers the five lifecycle hooks
+        run: |
+          for ev in SessionStart UserPromptSubmit PostToolUse PreCompact SessionEnd; do
+            jq -e ".hooks.$ev" hooks/hooks.json > /dev/null || { echo "missing $ev"; exit 1; }
+          done
+          # No Stop hook may ever be present (extended-thinking conflict).
+          if jq -e '.hooks.Stop' hooks/hooks.json > /dev/null 2>&1; then
+            echo "ERROR: a Stop hook is present — forbidden"; exit 1
+          fi
+
+      - name: Shell syntax
+        run: |
+          bash -n hooks/ledger-catchup.sh
+          bash -n hooks/ledger-checkpoint.sh
+          bash -n hooks/ledger-drift.sh
+          bash -n hooks/ledger-dashboard.sh
+          bash -n skills/ledger/scripts/ledger-init.sh
+
+      - name: shellcheck
+        run: |
+          sudo apt-get update && sudo apt-get install -y shellcheck
+          shellcheck -S warning hooks/*.sh skills/ledger/scripts/ledger-init.sh || true
+
+      - name: Checkpoint stages living files only (never code)
+        run: |
+          # Guard: the only git-add targets are the living Markdown files.
+          if grep -E "git add" hooks/ledger-checkpoint.sh | grep -vE 'SESSION\.md|LOG\.md|GOALS\.md|TRACKER\.md|MISTAKES\.md|DECISIONS\.md|RULES\.md|"\$f"'; then
+            echo "ERROR: checkpoint stages something other than living files"; exit 1
+          fi
+
+      - name: Skill frontmatter present
+        run: |
+          head -1 skills/ledger/SKILL.md | grep -q '^---$'
+          grep -q '^name: ledger$' skills/ledger/SKILL.md

@@ -1,0 +1,45 @@
+name: Bug report
+description: A hook didn't fire, state was lost, or something behaved unexpectedly
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What did ledger do (or fail to do)?
+      placeholder: "After /compact, the auto-catchup briefing didn't appear."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: Install method
+      options:
+        - Plugin (/plugin install)
+        - Standalone skill (~/.claude/skills)
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS + shell
+      placeholder: "macOS 15 / zsh, or Ubuntu 24.04 / bash"
+    validations:
+      required: true
+  - type: input
+    id: runtime
+    attributes:
+      label: TS runtime for the dashboard (if relevant)
+      placeholder: "bun 1.3 / npx tsx / none"
+  - type: textarea
+    id: files
+    attributes:
+      label: Relevant living-file state
+      description: Paste the relevant bit of SESSION.md / TRACKER.md if it helps (redact anything private).
+      render: markdown

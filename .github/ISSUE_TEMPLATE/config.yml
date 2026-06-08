@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Claude Code plugin docs
+    url: https://code.claude.com/docs/en/plugins
+    about: How plugins, hooks, and marketplaces work in Claude Code.

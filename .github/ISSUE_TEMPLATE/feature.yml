@@ -1,0 +1,27 @@
+name: Feature / idea
+description: Propose an adapter, a dashboard theme, or a behavior change
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What should ledger do that it doesn't?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it helps the next session resume better
+      description: ledger's bar is "does this make resuming cold cheaper, without adding risk or dependencies?"
+    validations:
+      required: true
+  - type: checkboxes
+    id: invariants
+    attributes:
+      label: Invariants
+      description: Confirm the idea respects ledger's design rules.
+      options:
+        - label: It doesn't require a blocking hook (no Stop hook).
+        - label: It doesn't commit anything other than the living Markdown files.
+        - label: It doesn't add a hard dependency to the tracking core (dashboard-only deps are fine, behind a guard).
