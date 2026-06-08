@@ -1,0 +1,13 @@
+# ledger is itself tracked by ledger during development — ignore generated state.
+.claude/state.html
+.claude/.gitignore
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Node / bun (only used by the optional dashboard renderer)
+node_modules/
+bun.lockb

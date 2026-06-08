@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "ledger",
+  "owner": {
+    "name": "realdeal88"
+  },
+  "metadata": {
+    "description": "Living project memory for Claude Code — never lose context to a /compact or a restart again.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "ledger",
+      "source": "./",
+      "displayName": "ledger — Living Project Memory",
+      "description": "An always-on set of living files that auto-catch-up at session start and auto-snapshot at every compaction and session end. Five non-blocking hooks keep your goals, tracker, decisions, mistakes, and exact next step current — so every session, even one after a /compact, knows precisely where things stand. Includes an auto-generated HTML dashboard. Never coerces work; only remembers.",
+      "version": "1.0.0",
+      "author": {
+        "name": "realdeal88"
+      },
+      "homepage": "https://github.com/realdeal88/ledger",
+      "repository": "https://github.com/realdeal88/ledger",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": [
+        "session-memory",
+        "context-management",
+        "project-tracking",
+        "handoff",
+        "catchup",
+        "living-files",
+        "claude-code",
+        "hooks"
+      ]
+    }
+  ]
+}
