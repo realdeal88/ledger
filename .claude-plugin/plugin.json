@@ -10,7 +10,7 @@
   },
   "homepage": "https://github.com/realdeal88/ledger",
   "repository": "https://github.com/realdeal88/ledger",
-  "license": "MIT",
+  "license": "CC-BY-ND-4.0",
   "keywords": [
     "session-memory",
     "context-management",

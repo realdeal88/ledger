@@ -13,7 +13,7 @@ It runs itself. You never call it.
 
 [Install](#install) · [How it works](#how-it-works) · [The living files](#the-living-files) · [Safety](#safety--design-principles) · [FAQ](#faq)
 
-`MIT` · Claude Code plugin + standalone skill · zero-dependency core
+`CC BY-ND 4.0` · Claude Code plugin + standalone skill · zero-dependency core
 
 <br>
 
@@ -200,4 +200,4 @@ Issues and PRs welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). Good first co
 
 ## License
 
-[MIT](LICENSE) © realdeal88
+[CC BY-ND 4.0](LICENSE) © realdeal88
