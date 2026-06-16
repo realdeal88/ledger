@@ -15,6 +15,10 @@ It runs itself. You never call it.
 
 `MIT` · Claude Code plugin + standalone skill · zero-dependency core
 
+<br>
+
+<img src="assets/demo.gif" alt="ledger catching up at the start of a new session — surfacing the last session, what's in flight, the open decision, and the living files, then resuming exactly where you left off" width="840">
+
 </div>
 
 ---
